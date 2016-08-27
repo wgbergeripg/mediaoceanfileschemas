@@ -1,0 +1,334 @@
+{
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "tables"
+  ],
+  "definitions": {
+    "__main__.MODateField": {
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "type"
+      ],
+      "type": "object",
+      "properties": {
+        "description": {
+          "description": "Data dictionary entry for this field",
+          "type": "string"
+        },
+        "nullable": {
+          "description": "Must be present and set to False for this field to be blank",
+          "type": "boolean"
+        },
+        "pattern": {
+          "description": "subset of ISO 8601 allowed formats date format",
+          "enum": [
+            "YYYYMMDD",
+            "YYYY-MM-DD",
+            "YYYY-MM",
+            "hh:mm",
+            "hhmm",
+            "YYYYMMDDThh:mm",
+            "YYYYMMDDThhmm",
+            "YYYY-MM-DDThh:mm",
+            "YYYY-MM-DDThhmm"
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "Data type identifier",
+          "enum": [
+            "date"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Title of the header row of this field",
+          "type": "string"
+        }
+      }
+    },
+    "__main__.MOForeignKeyField": {
+      "additionalProperties": false,
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "foreign_key": {
+          "additionalProperties": false,
+          "required": [
+            "table",
+            "type",
+            "field"
+          ],
+          "type": "object",
+          "properties": {
+            "schema": {
+              "description": "If a field is described in a different schema document, the name of that schema",
+              "type": "string"
+            },
+            "field": {
+              "description": "The name of the field in the foreign table",
+              "type": "string"
+            },
+            "type": {
+              "description": "Data type identifier",
+              "enum": [
+                "foreign_key"
+              ],
+              "type": "string"
+            },
+            "table": {
+              "description": "The name of a table where the key is found",
+              "type": "string"
+            }
+          }
+        },
+        "name": {
+          "description": "Title of the header row of this field",
+          "type": "string"
+        }
+      }
+    },
+    "__main__.MOIntegerField": {
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "type",
+        "bytes"
+      ],
+      "type": "object",
+      "properties": {
+        "description": {
+          "description": "Data dictionary entry for this field",
+          "type": "string"
+        },
+        "nullable": {
+          "description": "Must be present and set to False for this field to be blank",
+          "type": "boolean"
+        },
+        "bytes": {
+          "description": "Number of bytes needed to store value. Not the number of bytes/characters of text",
+          "maximum": 8,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "type": {
+          "description": "Data type identifier",
+          "enum": [
+            "integer"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Title of the header row of this field",
+          "type": "string"
+        }
+      }
+    },
+    "__main__.MOStringField": {
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "type",
+        "size"
+      ],
+      "type": "object",
+      "properties": {
+        "description": {
+          "description": "Data dictionary entry for this field",
+          "type": "string"
+        },
+        "nullable": {
+          "description": "Must be present and set to False for this field to be blank",
+          "type": "boolean"
+        },
+        "size": {
+          "description": "Maximum number of code points in string",
+          "minimum": 1,
+          "type": "integer"
+        },
+        "type": {
+          "description": "Data type identifier",
+          "enum": [
+            "string"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Title of the header row of this field",
+          "type": "string"
+        }
+      }
+    },
+    "__main__.MOBooleanField": {
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "type",
+        "size",
+        "true_value",
+        "false_value"
+      ],
+      "type": "object",
+      "properties": {
+        "nullable": {
+          "description": "Must be present and set to False for this field to be blank",
+          "type": "boolean"
+        },
+        "size": {
+          "description": "Number of code points represented in text",
+          "minimum": 1,
+          "type": "integer"
+        },
+        "type": {
+          "description": "Data type identifier",
+          "enum": [
+            "boolean"
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "Data dictionary entry for this field",
+          "type": "string"
+        },
+        "false_value": {
+          "description": "The textual representation of FALSE",
+          "type": "string"
+        },
+        "true_value": {
+          "description": "The textual representation of TRUE",
+          "type": "string"
+        },
+        "name": {
+          "description": "Title of the header row of this field",
+          "type": "string"
+        }
+      }
+    },
+    "__main__.MODecimalField": {
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "type",
+        "precision",
+        "scale"
+      ],
+      "type": "object",
+      "properties": {
+        "nullable": {
+          "description": "Must be present and set to False for this field to be blank",
+          "type": "boolean"
+        },
+        "precision": {
+          "description": "Total number of digits. E.g. 123.45 has a precision of 5",
+          "minimum": 1,
+          "type": "integer"
+        },
+        "type": {
+          "description": "Data type identifier",
+          "enum": [
+            "boolean"
+          ],
+          "type": "string"
+        },
+        "scale": {
+          "description": "Total number of digits representing numbers less than one. E.g. 123.45 has a scale of 2",
+          "minimum": 1,
+          "type": "integer"
+        },
+        "description": {
+          "description": "Data dictionary entry for this field",
+          "type": "string"
+        },
+        "name": {
+          "description": "Title of the header row of this field",
+          "type": "string"
+        }
+      }
+    }
+  },
+  "type": "object",
+  "properties": {
+    "description": {
+      "description": "Data dictionary entry for this schema",
+      "type": "string"
+    },
+    "schema": {
+      "description": "The name of the schema",
+      "type": "string"
+    },
+    "tables": {
+      "description": "A list of files and the associated tables within this schema",
+      "items": {
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "file_name_prefix",
+          "fields"
+        ],
+        "type": "object",
+        "properties": {
+          "description": {
+            "description": "Data dictionary entry for this table",
+            "type": "string"
+          },
+          "fields": {
+            "description": "The ordered list of fields as they will appear in the file",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/__main__.MOStringField"
+                },
+                {
+                  "$ref": "#/definitions/__main__.MODateField"
+                },
+                {
+                  "$ref": "#/definitions/__main__.MOIntegerField"
+                },
+                {
+                  "$ref": "#/definitions/__main__.MOBooleanField"
+                },
+                {
+                  "$ref": "#/definitions/__main__.MODecimalField"
+                },
+                {
+                  "$ref": "#/definitions/__main__.MOForeignKeyField"
+                }
+              ]
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "file_name_prefix": {
+            "description": "The file name prefix used for this table.",
+            "type": "string"
+          },
+          "primary_key": {
+            "description": "The name of the primary key of this table or false if the table fails to have one",
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "enum": [
+                  false
+                ],
+                "type": "boolean"
+              }
+            ]
+          },
+          "name": {
+            "description": "Name of the table",
+            "type": "string"
+          }
+        }
+      },
+      "minItems": 1,
+      "type": "array"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-04/schema#"
+}
